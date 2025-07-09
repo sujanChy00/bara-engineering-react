@@ -1,14 +1,18 @@
+import { CallToAction } from "@/components/layout/call-to-action";
+import { Container } from "@/components/layout/container";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Dosis, Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dosis = Dosis({
+  variable: "--font-dosis",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -24,10 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${dosis.variable} ${inter.className} antialiased`}>
+        <Header />
+        <Container>{children}</Container>
+        <CallToAction />
+        <Footer />
       </body>
     </html>
   );
