@@ -2,6 +2,7 @@ import { CallToAction } from "@/components/layout/call-to-action";
 import { Container } from "@/components/layout/container";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Dosis, Inter } from "next/font/google";
 import "./globals.css";
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Container>{children}</Container>
         <CallToAction />
         <Footer />
+        <Toaster position="top-center" />
       </body>
     </html>
   );

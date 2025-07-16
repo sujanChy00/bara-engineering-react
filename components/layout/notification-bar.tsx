@@ -6,8 +6,8 @@ export const NotificationBar = () => {
     <div className="bg-tertiary p-1 text-white text-center flex justify-between items-center">
       <div />
       <p className="text-xs">
-        Due to the COVID 19 epidemic, orders may be processed with a slight
-        delay
+        Due to the <span className="font-semibold">COVID 19 </span>epidemic,
+        orders may be processed with a slight delay
       </p>
       <Button variant="ghost" size={"icon"}>
         <X />
