@@ -4,44 +4,70 @@ import { useEffect, useState } from "react";
 import { SlidingNumber } from "../ui/sliding-number";
 
 export const OfferCounter = () => {
-  const [days, setDays] = useState(new Date().getDate());
-  const [hours, setHours] = useState(new Date().getHours());
-  const [minutes, setMinutes] = useState(new Date().getMinutes());
-  const [seconds, setSeconds] = useState(new Date().getSeconds());
+  const [targetDate] = useState(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 7);
+    return date;
+  });
+
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setDays(new Date().getDate());
-      setHours(new Date().getHours());
-      setMinutes(new Date().getMinutes());
-      setSeconds(new Date().getSeconds());
-    }, 1000);
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime();
+      const target = targetDate.getTime();
+      const difference = target - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (difference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        setTimeLeft({ days, hours, minutes, seconds });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    calculateTimeLeft();
+    const interval = setInterval(calculateTimeLeft, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [targetDate]);
+
   return (
     <div className="flex items-center gap-0.5">
       <SlidingNumber
-        value={days}
+        value={timeLeft.days}
         padStart={true}
-        className="bg-destructive text-white font-dosis text-2xl font-semibold py-4 px-3 rounded-xs"
+        className="bg-destructive text-white font-dosis text-2xl font-semibold py-4 px-3 rounded-md"
       />
       <span>:</span>
       <SlidingNumber
-        value={hours}
+        value={timeLeft.hours}
         padStart={true}
-        className="bg-destructive text-white font-dosis text-2xl font-semibold py-4 px-3 rounded-xs"
+        className="bg-destructive text-white font-dosis text-2xl font-semibold py-4 px-3 rounded-md"
       />
       <span>:</span>
       <SlidingNumber
-        value={minutes}
+        value={timeLeft.minutes}
         padStart={true}
-        className="bg-destructive text-white font-dosis text-2xl font-semibold py-4 px-3 rounded-xs"
+        className="bg-destructive text-white font-dosis text-2xl font-semibold py-4 px-3 rounded-md"
       />
       <span>:</span>
       <SlidingNumber
-        value={seconds}
+        value={timeLeft.seconds}
         padStart={true}
-        className="bg-destructive text-white font-dosis text-2xl font-semibold py-4 px-3 rounded-xs"
+        className="bg-destructive text-white font-dosis text-2xl font-semibold py-4 px-3 rounded-md"
       />
     </div>
   );

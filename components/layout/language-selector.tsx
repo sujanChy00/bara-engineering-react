@@ -1,35 +1,40 @@
 "use client";
 
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@radix-ui/react-hover-card";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 export const LanguageSelector = () => {
   const [language, setLanguage] = useState("en");
   return (
-    <HoverCard openDelay={0}>
-      <HoverCardTrigger className="text-xs text-gray-700 font-medium  flex items-center hover:text-primary cursor-default gap-0.5">
+    <DropdownMenu>
+      <DropdownMenuTrigger className="text-xs text-gray-700 font-medium  flex items-center hover:text-primary cursor-default gap-0.5">
         {language === "en" ? "English" : "日本語"}
         <ChevronDown className="size-3 group-hover:text-primary" />
-      </HoverCardTrigger>
-      <HoverCardContent className="flex flex-col py-2 shadow bg-background">
-        <button
-          onClick={() => setLanguage("en")}
-          className="py-2 px-3 hover:bg-muted"
-        >
-          English
-        </button>
-        <button
-          onClick={() => setLanguage("ja")}
-          className="py-2 px-3 hover:bg-muted"
-        >
-          日本語
-        </button>
-      </HoverCardContent>
-    </HoverCard>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="flex flex-col shadow bg-background min-w-fit rounded-none p-0 py-3">
+        <DropdownMenuItem asChild className="rounded-none">
+          <button
+            onClick={() => setLanguage("en")}
+            className="py-2 px-3 text-xs text-muted-foreground font-medium"
+          >
+            English
+          </button>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className="rounded-none">
+          <button
+            onClick={() => setLanguage("ja")}
+            className="py-2 px-3 text-xs text-muted-foreground font-medium"
+          >
+            日本語
+          </button>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };

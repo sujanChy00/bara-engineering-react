@@ -23,9 +23,13 @@ export const CallToAction = () => {
           </p>
           <div className="pt-3">
             <Input
+              placeholder="your email address"
+              type="email"
+              required
+              inputMode="email"
               leftIcon={<Mail className="text-muted-foreground" />}
               rightIconClassName="right-1.5"
-              className="border-none bg-white rounded-xs h-16 pr-40"
+              className="border-none bg-white rounded-xs h-16 pr-40 pl-12"
               rightIcon={
                 <Button className="rounded-xs" size="xl" variant="tertiary">
                   Subscribe

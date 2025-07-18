@@ -59,7 +59,11 @@ const items = [
 export const HomeCategoriesCarousel = () => {
   return (
     <div className="border">
-      <Carousel>
+      <Carousel
+        opts={{
+          dragFree: true,
+        }}
+      >
         <CarouselContent>
           {items.map((item, index) => (
             <CarouselItem

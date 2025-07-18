@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import { AspectRatio } from "../ui/aspect-ratio";
 import { Badge } from "../ui/badge";
@@ -43,7 +43,7 @@ export const HomeBanner = () => {
                 </p>
               </section>
               <Button className="rounded-full" variant="destructive">
-                Shop Now <ArrowRight />
+                Shop Now <MoveRight />
               </Button>
             </div>
           </a>
@@ -93,7 +93,7 @@ export const HomeBanner = () => {
                 </p>
               </section>
               <Button className="rounded-full">
-                Shop Now <ArrowRight />
+                Shop Now <MoveRight />
               </Button>
             </div>
           </a>
